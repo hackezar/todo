@@ -3,17 +3,18 @@ import './normalize.css';
 import './styles.css';
 
 //pics
-import AddIcon from './pics/addIcon.svg';
-const addNew = document.getElementById('addNew');
-addNew.src = AddIcon;
+
+
 
 //functions
-import { openInitialProject } from "./openInitialProject.js";
-import { Project } from "./database.js;"
+import { createProjectArray } from "./createProjectArray.js";
+import { renderSideBar } from "./renderSideBar.js";
+import { findSelectedProject } from './findSelectedProject.js';
+import { renderMain } from "./renderMain.js"
 
-const def = new Project();
-def.addToLibrary();
-
-openInitialProject();
-
-
+//Create project array
+let projects = createProjectArray();
+//Update sidebar with projects
+renderSideBar(projects);
+let selectedProject = findSelectedProject(projects);
+renderMain(selectedProject);

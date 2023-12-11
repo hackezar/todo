@@ -25,3 +25,12 @@ body {
     grid-row: 2/3;
     background-color: grey;
 }
+
+#projectTitle {
+    text-align: center;
+}
+
+#todoForm {
+    display: flex;
+    flex-direction: column;
+}
