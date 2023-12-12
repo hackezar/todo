@@ -39,11 +39,12 @@ body {
     text-align: center;
 }
 
-#projectsList {
-    
-}
 
 #todoForm {
     display: flex;
     flex-direction: column;
 } 
+
+#newToDoButton, #dialogCloseBtn, #dialogSubmitBtn {
+    cursor: pointer;
+}

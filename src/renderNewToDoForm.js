@@ -1,4 +1,7 @@
 import  Close  from './pics/close.svg';
+import { updateData } from './updateData.js';
+import { addToDoData } from './updateData.js';
+import { projects } from './index.js';
 
 export function renderDialog() {
     const main = document.getElementById('main');
@@ -23,14 +26,17 @@ export function renderDialog() {
         formTitle.appendChild(formTitleText);
         formTitle.appendChild(formTitleClose);
         form.appendChild(formTitle);
+        dialog.showModal();
     }
     function createTitleInput() {
         const titleInput = document.createElement('input');
+        titleInput.setAttribute('id', 'titleInput')
         titleInput.placeholder = 'Title';
         form.appendChild(titleInput);
     }
     function createDescriptionInput() {
         const descriptionInput = document.createElement('input');
+        descriptionInput.setAttribute('id', 'descriptionInput');
         descriptionInput.placeholder = "Description";
         form.appendChild(descriptionInput);
     }
@@ -79,19 +85,22 @@ export function renderDialog() {
         };
         form.appendChild(slideContainer);
     };
-    function  createSubmitButton() {
+    function  createSubmitButton(projects) {
         const submitBtn = document.createElement('button');
+        submitBtn.setAttribute('id', 'dialogSubmitBtn')
         submitBtn.innerText = "Submit";
+        submitBtn.addEventListener('click', (() => {
+            addToDoData(projects);
+            //addToDoDOM();
+        }));
         form.appendChild(submitBtn);
-        dialog.showModal();
     };
-    
     createDialog();
     const form = document.getElementById('todoForm');
     createTitleInput();
     createDescriptionInput();
     createDueDateInput();
     createSlider();
-    createSubmitButton();
+    createSubmitButton(projects);
 }
 

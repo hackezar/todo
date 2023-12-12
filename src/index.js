@@ -10,7 +10,7 @@ import { findSelectedProject } from './findSelectedProject.js';
 import { renderMain } from "./renderMain.js"
 
 //Create project array
-let projects = createProjectArray();
+export let projects = createProjectArray();
 //Update sidebar with projects
 renderSideBar(projects);
 let selectedProject = findSelectedProject(projects);

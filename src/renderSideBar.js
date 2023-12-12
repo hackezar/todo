@@ -1,9 +1,12 @@
+import { openProject } from "./renderMain.js";
+
 export function renderSideBar(projects) {
     //starts with a clean slate
     let projectsList = document.getElementById('projectsList');
     projectsList.innerHTML = "";
     //Goes through each name in projects and creates sidebar with names
     projects.forEach(highlightSelectedProject);
+
     //this function highlights the project if it is the currently selected one
     function highlightSelectedProject(project) {
         let lItem = document.createElement('li');
@@ -20,6 +23,7 @@ export function renderSideBar(projects) {
             if (project.selected == false) {
                 setAllFalse(projects);
                 project.selected = true;
+                openProject(project);
                 renderSideBar(projects);
             } else if (project.selected == true) {
                 return;
@@ -35,5 +39,7 @@ export function renderSideBar(projects) {
         });
         return projects;
     };
+
+
 
 }
