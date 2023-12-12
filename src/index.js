@@ -2,9 +2,6 @@
 import './normalize.css';
 import './styles.css';
 
-//pics
-
-
 
 //functions
 import { createProjectArray } from "./createProjectArray.js";
