@@ -1,5 +1,4 @@
-export function addToDoData(projects) {
-    let newProject;
+export function addToDoData(selectedProject) {
     let title = document.getElementById('titleInput');
     title = title.value;
     let description = document.getElementById('descriptionInput');
@@ -8,13 +7,8 @@ export function addToDoData(projects) {
     dueDate = dueDate.value;
     let priority = document.getElementById('slideoutput').innerHTML;
     let newToDo = createToDo(title, description, dueDate, priority);
-    for (let i = 0; i<projects.length; i++) {
-        if (projects[i].selected == true) {
-            projects[i].todos.push(newToDo);
-            newProject = projects[i];
-        }
-    }
-    return newProject, projects;
+    selectedProject.todos.push(newToDo);
+    return selectedProject;
 }
 
     export function createToDo(title, description, dueDate, priority) {

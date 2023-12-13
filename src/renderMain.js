@@ -15,41 +15,41 @@ export function renderMain(selectedProject) {
     }));
     mainTitleDiv.appendChild(imgText);
     mainTitleDiv.appendChild(addNewImg); 
-    openProject(selectedProject);
+    updateMain(selectedProject);
 }
-
+ 
 //Opens project info on main container
 //Used in renderSideBar.js
-export function openProject(e) {
-    console.log(e);
+export function updateMain(updatedProject) {
+    console.log(updatedProject);
     const projectTitle = document.getElementById('projectTitle');
-    projectTitle.innerHTML = e.name;
+    let name = updatedProject.name;
+    projectTitle.innerText = name;
     const mainContainer = document.getElementById('mainContainer')
     mainContainer.innerHTML = "";
-    for (var i = 0; i < e.todos.length; i++) {
+    updatedProject.todos.forEach((todo) => {
+        let title = todo.title;
+        let description = todo.description;
+        let dueDate = todo.dueDate;
+        let priority = todo.priority;
         let todoContainer = document.createElement('div');
         todoContainer.setAttribute('class', 'todoContainer');
         let todoTitle = document.createElement('p');
-        todoTitle.innerHTML = e.todos[i].title;
+        todoTitle.setAttribute('class', 'todoInfo');
+        todoTitle.innerHTML = title;
+        let todoDescription = document.createElement('p');
+        todoDescription.setAttribute('class', 'todoInfo');
+        todoDescription.innerHTML = description;
+        let todoDueDate = document.createElement('p');
+        todoDueDate.setAttribute('class', 'todoInfo');
+        todoDueDate.innerHTML = dueDate;
+        let todoPriority = document.createElement('p');
+        todoPriority.setAttribute('class', 'todoInfo');
+        todoPriority.innerHTML = priority;
         todoContainer.appendChild(todoTitle);
+        todoContainer.appendChild(todoDescription);
+        todoContainer.appendChild(todoDueDate);
+        todoContainer.appendChild(todoPriority);
         mainContainer.appendChild(todoContainer);
-    }
+    });
 }
-
-export function updateMainDom(updatedProject, projects) {
-
-    for (let i = 0; i< projects.length; i++){
-        if (projects[i].selected == true) {
-            for (let j = 0; j<projects[i].todos.length; j++) {
-                let todoContainer = document.createElement('div');
-                todoContainer.setAttribute('class', 'todoContainer');
-                let todoTitle = document.createElement('p');
-                todoTitle.innerHTML = projects[i].todos[j].title;
-                todoContainer.appendChild(todoTitle);
-                mainContainer.appendChild(todoContainer);
-                return projects;
-            }
-        }
-    }
-}
-

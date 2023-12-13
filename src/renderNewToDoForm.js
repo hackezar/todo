@@ -1,7 +1,8 @@
 import  Close  from './pics/close.svg';
 import { addToDoData } from './updateData.js';
 import { projects } from './index.js';
-import { updateMainDom } from './renderMain.js';
+import { updateMain } from './renderMain.js';
+import { findSelectedProject } from './findSelectedProject.js';
 
 export function renderDialog() {
     const main = document.getElementById('main');
@@ -89,13 +90,16 @@ export function renderDialog() {
     };
     function  createSubmitButton(projects) {
         const submitBtn = document.createElement('button');
-        submitBtn.type = 'submit';
+        //button must be type button or the page will reload on button click
+        submitBtn.type = 'button';
         submitBtn.setAttribute('id', 'dialogSubmitBtn')
         submitBtn.innerText = "Submit";
         submitBtn.addEventListener('click', (() => {
-            //let updatedProject = addToDoData(projects);
-            //updateMainDom(updatedProject, projects);
-            //return projects;
+            let selectedProject = findSelectedProject(projects);
+            let updatedProject = addToDoData(selectedProject);
+            console.log(updatedProject);
+            updateMain(updatedProject);
+            return projects;
         }));
         form.appendChild(submitBtn);
     };
