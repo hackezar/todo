@@ -20,20 +20,36 @@ export function renderMain(selectedProject) {
 
 //Opens project info on main container
 //Used in renderSideBar.js
-export function openProject(project) {
+export function openProject(e) {
+    console.log(e);
     const projectTitle = document.getElementById('projectTitle');
-    projectTitle.innerHTML = project.name;
+    projectTitle.innerHTML = e.name;
     const mainContainer = document.getElementById('mainContainer')
     mainContainer.innerHTML = "";
-    for (var i = 0; i < project.todos.length; i++) {
+    for (var i = 0; i < e.todos.length; i++) {
         let todoContainer = document.createElement('div');
         todoContainer.setAttribute('class', 'todoContainer');
         let todoTitle = document.createElement('p');
-        todoTitle.innerHTML = project.todos[i].title;
+        todoTitle.innerHTML = e.todos[i].title;
         todoContainer.appendChild(todoTitle);
         mainContainer.appendChild(todoContainer);
     }
 }
 
+export function updateMainDom(updatedProject, projects) {
 
+    for (let i = 0; i< projects.length; i++){
+        if (projects[i].selected == true) {
+            for (let j = 0; j<projects[i].todos.length; j++) {
+                let todoContainer = document.createElement('div');
+                todoContainer.setAttribute('class', 'todoContainer');
+                let todoTitle = document.createElement('p');
+                todoTitle.innerHTML = projects[i].todos[j].title;
+                todoContainer.appendChild(todoTitle);
+                mainContainer.appendChild(todoContainer);
+                return projects;
+            }
+        }
+    }
+}
 
