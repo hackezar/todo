@@ -2,12 +2,11 @@
 :root{
     --shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
     }
-
-body {
-    display: grid;
-    grid-template-columns: 1fr 9fr;
-    grid-template-rows: 1fr 8fr 1fr;
+body > div {
+    padding: 0;
+    margin: 0;
 }
+
 
 #header {
     display: flex;
@@ -17,16 +16,14 @@ body {
     justify-content: space-between;
 }
 
-
-
 #sidebar {
-    grid-column: 1/2;
-    grid-row: 2/4;
     background-color: green;
 }
 
 #sidebar > ul {
     list-style-type: none;
+    display: flex;
+    justify-content: space-around;
 }
 
 #sidebar > ul > li:hover {
@@ -45,6 +42,12 @@ body {
 }
 
 
+#newImgDiv {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+
 #todoForm {
     display: flex;
     flex-direction: column;
@@ -52,6 +55,15 @@ body {
 
 #newToDoButton, #dialogCloseBtn, #dialogSubmitBtn {
     cursor: pointer;
+}
+
+#newToDoButton {
+    height: 3vh;
+    margin-right: 1rem;
+}
+
+#mainTitleDiv > h3{
+    margin: 0;
 }
 
 #mainContainer {
@@ -66,4 +78,23 @@ body {
     border: 1px solid black;
     text-align: center;
     padding: 2rem;
+}
+
+#sidebarTitle > p {
+    margin: 0;
+}
+
+#projectsList {
+    margin: 0;
+}
+
+#projectForm {
+    display: flex;
+    flex-direction: column;
+}
+
+#projectFormTitle {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

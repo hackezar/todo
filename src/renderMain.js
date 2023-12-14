@@ -1,21 +1,22 @@
 import AddIcon from './pics/addIcon.svg';
 import { renderDialog } from './renderNewToDoForm.js';
 
-export function renderMain(selectedProject) {
-    const projectTitle = document.getElementById('projectTitle');
-    projectTitle.innerText = selectedProject.name;
-
+export function renderMain() {
+    const newImgDiv = document.createElement('div');
+    newImgDiv.setAttribute('id', 'newImgDiv');
     const addNewImg = document.createElement('img');
     const imgText = document.createElement('p');
-    imgText.innerHTML = "Add New ToDo";
+    imgText.setAttribute('id', 'imgText');
+    imgText.innerHTML = `New "ToDo"`;
     addNewImg.src = AddIcon;
     addNewImg.setAttribute('id', 'newToDoButton');
     addNewImg.addEventListener("click", (() => {
         renderDialog();
     }));
-    mainTitleDiv.appendChild(imgText);
-    mainTitleDiv.appendChild(addNewImg); 
-    updateMain(selectedProject);
+    newImgDiv.appendChild(imgText);
+    newImgDiv.appendChild(addNewImg);
+    mainTitleDiv.appendChild(newImgDiv);
+     
 }
  
 //Opens project info on main container
@@ -27,11 +28,11 @@ export function updateMain(updatedProject) {
     projectTitle.innerText = name;
     const mainContainer = document.getElementById('mainContainer')
     mainContainer.innerHTML = "";
-    updatedProject.todos.forEach((todo) => {
-        let title = todo.title;
-        let description = todo.description;
-        let dueDate = todo.dueDate;
-        let priority = todo.priority;
+    for (let i = 0; i<updatedProject.todos.length; i++) {
+        let title = updatedProject.todos[i].title;
+        let description = updatedProject.todos[i].description;
+        let dueDate = updatedProject.todos[i].dueDate;
+        let priority = updatedProject.todos[i].priority;
         let todoContainer = document.createElement('div');
         todoContainer.setAttribute('class', 'todoContainer');
         let todoTitle = document.createElement('p');
@@ -51,5 +52,5 @@ export function updateMain(updatedProject) {
         todoContainer.appendChild(todoDueDate);
         todoContainer.appendChild(todoPriority);
         mainContainer.appendChild(todoContainer);
-    });
+    };
 }
