@@ -15,6 +15,24 @@ export function createProjectArray() {
                     description: "Pull weeds out of flower box",
                     dueDate: "Friday",
                     priority: "Moderate"
+                },
+                {
+                    title : "Learn about coding",
+                    description: "Finer craft mny full stack developer skills",
+                    dueDate: "Wednesday",
+                    priority: "Urgent"
+                },
+                {
+                    title : "Dance",
+                    description: "Go to good night johnnys and dance!",
+                    dueDate: "Saturday",
+                    priority: "Low"
+                },
+                {
+                    title : "Change Brakes",
+                    description: "Replace Car Brake Pads",
+                    dueDate: "Tuesday",
+                    priority: "Moderate"
                 }
             ]
         };

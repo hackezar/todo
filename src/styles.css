@@ -1,3 +1,8 @@
+/*variables */
+:root{
+    --shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
+    }
+
 body {
     display: grid;
     grid-template-columns: 1fr 9fr;
@@ -47,4 +52,18 @@ body {
 
 #newToDoButton, #dialogCloseBtn, #dialogSubmitBtn {
     cursor: pointer;
+}
+
+#mainContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-rows: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.todoContainer {
+    border: 1px solid black;
+    text-align: center;
+    padding: 2rem;
 }

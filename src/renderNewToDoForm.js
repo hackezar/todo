@@ -99,10 +99,17 @@ export function renderDialog() {
             let updatedProject = addToDoData(selectedProject);
             console.log(updatedProject);
             updateMain(updatedProject);
+            removeDialog();
             return projects;
         }));
         form.appendChild(submitBtn);
     };
+
+    function removeDialog() {
+        const dialog = document.getElementById('dialog');
+        dialog.remove();
+        return;
+    }
     createDialog();
     const form = document.getElementById('todoForm');
     createTitleInput();
