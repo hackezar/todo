@@ -53,7 +53,7 @@ body > div {
     flex-direction: column;
 } 
 
-#newToDoButton, #dialogCloseBtn, #dialogSubmitBtn {
+#newToDoButton, #dialogCloseBtn, #dialogSubmitBtn, #newProjectButton {
     cursor: pointer;
 }
 
@@ -68,7 +68,7 @@ body > div {
 
 #mainContainer {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     grid-template-rows: 1fr;
     padding: 1rem;
     gap: 1rem;
@@ -78,6 +78,11 @@ body > div {
     border: 1px solid black;
     text-align: center;
     padding: 2rem;
+}
+
+.todoContainer:hover {
+    border-color: white;
+    cursor: pointer;
 }
 
 #sidebarTitle > p {

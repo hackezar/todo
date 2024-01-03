@@ -1,5 +1,6 @@
 import AddIcon from './pics/addIcon.svg';
 import { renderDialog } from './renderNewToDoForm.js';
+import { expandTodo } from './expandTodo.js';
 
 export function renderMain() {
     const newImgDiv = document.createElement('div');
@@ -29,6 +30,7 @@ export function updateMain(updatedProject) {
     const mainContainer = document.getElementById('mainContainer')
     mainContainer.innerHTML = "";
     for (let i = 0; i<updatedProject.todos.length; i++) {
+        updatedProject.todos[i].index = i;
         let title = updatedProject.todos[i].title;
         let description = updatedProject.todos[i].description;
         let dueDate = updatedProject.todos[i].dueDate;
@@ -43,14 +45,13 @@ export function updateMain(updatedProject) {
         todoDescription.innerHTML = `description: ${description}`;
         let todoDueDate = document.createElement('p');
         todoDueDate.setAttribute('class', 'todoInfo');
-        todoDueDate.innerHTML = `due date: ${dueDate}`;
+        todoDueDate.innerHTML = dueDate;
         let todoPriority = document.createElement('p');
         todoPriority.setAttribute('class', 'todoInfo');
         todoPriority.innerHTML = `priority: ${priority}`;
         todoContainer.appendChild(todoTitle);
-        todoContainer.appendChild(todoDescription);
         todoContainer.appendChild(todoDueDate);
-        todoContainer.appendChild(todoPriority);
+        todoContainer.addEventListener('click', expandTodo(updatedProject, i));
         mainContainer.appendChild(todoContainer);
     };
 }
