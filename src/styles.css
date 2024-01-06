@@ -85,6 +85,10 @@ body > div {
     cursor: pointer;
 }
 
+#expandedToDo {
+    border: 1px solid black;
+}
+
 #sidebarTitle > p {
     margin: 0;
 }

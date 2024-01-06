@@ -1,6 +1,8 @@
 import AddIcon from './pics/addIcon.svg';
+import MinimizeIcon from './pics/minimize.svg';
+
 import { renderDialog } from './renderNewToDoForm.js';
-import { expandTodo } from './expandTodo.js';
+import { findTodoClicked } from './expandTodo.js';
 
 export function renderMain() {
     const newImgDiv = document.createElement('div');
@@ -23,7 +25,6 @@ export function renderMain() {
 //Opens project info on main container
 //Used in renderSideBar.js
 export function updateMain(updatedProject) {
-    console.log(updatedProject);
     const projectTitle = document.getElementById('projectTitle');
     let name = updatedProject.name;
     projectTitle.innerText = name;
@@ -51,7 +52,9 @@ export function updateMain(updatedProject) {
         todoPriority.innerHTML = `priority: ${priority}`;
         todoContainer.appendChild(todoTitle);
         todoContainer.appendChild(todoDueDate);
-        todoContainer.addEventListener('click', expandTodo(updatedProject, i));
+        todoContainer.addEventListener('click', (() => {
+            findTodoClicked(updatedProject, i, todoTitle, todoDescription, todoDueDate, todoPriority);
+        }));
         mainContainer.appendChild(todoContainer);
     };
 }
