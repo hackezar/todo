@@ -1,5 +1,4 @@
 import AddIcon from './pics/addIcon.svg';
-import MinimizeIcon from './pics/minimize.svg';
 
 import { renderDialog } from './renderNewToDoForm.js';
 import { findTodoClicked } from './expandTodo.js';

@@ -53,8 +53,12 @@ body > div {
     flex-direction: column;
 } 
 
-#newToDoButton, #dialogCloseBtn, #dialogSubmitBtn, #newProjectButton {
+#newToDoButton, #dialogCloseBtn, #dialogSubmitBtn, #newProjectButton, #minimizeIcon {
     cursor: pointer;
+}
+
+#newToDoButton:hover, #dialogCloseBtn:hover, #dialogSubmitBtn:hover, #newProjectButton:hover, #minimizeIcon:hover {
+    background-color: white;
 }
 
 #newToDoButton {
@@ -87,6 +91,11 @@ body > div {
 
 #expandedToDo {
     border: 1px solid black;
+}
+
+#minimizeDiv {
+    display: flex;
+    justify-content: end;
 }
 
 #sidebarTitle > p {
