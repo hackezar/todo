@@ -15,6 +15,7 @@ export function renderDialog() {
         dialog.appendChild(form);
         main.appendChild(dialog);
         const formTitle = document.createElement('div');
+        formTitle.setAttribute('id', 'formTitle');
         const formTitleText = document.createElement('p');
         formTitleText.innerText = "Add new ToDo";
         const formTitleClose = document.createElement('img');
@@ -68,6 +69,9 @@ export function renderDialog() {
         slideInput.value = '2';
         slideInput.setAttribute('class', 'slider');
         slideInput.setAttribute('id', 'myRange');
+        let slideTitle = document.createElement('p');
+        slideTitle.innerText = 'Priority';
+        slideContainer.appendChild(slideTitle)
         slideContainer.appendChild(slideInput);
         slideContainer.appendChild(slideOutput);
         slideOutput.innerHTML = "Moderate";

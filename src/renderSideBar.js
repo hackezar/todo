@@ -36,6 +36,8 @@ export function renderSideBar(projects) {
         });
         projectsList.appendChild(lItem);
     };
+    //FIX THIS
+    renderNewProjectButtonInSidebar();
 
     //Sets each project to selected = false
     function setAllFalse(projects) {
@@ -44,55 +46,65 @@ export function renderSideBar(projects) {
         });
         return projects;
     };
-};
-
-export function renderNewProjectButtonInSidebar() {
-    const newProjectBtn = document.getElementById('newProjectButton');
-    newProjectBtn.src = AddIcon;
-    newProjectBtn.addEventListener('click', (() => {
-        createNewProjectModal();
-    }));
-};
-
-function createNewProjectModal() {
-    const dialog = document.createElement('dialog');
-        dialog.setAttribute('id', 'projectDialog');
-        const form = document.createElement('form');
-        form.setAttribute('id', 'projectForm');
-        dialog.appendChild(form);
-        main.appendChild(dialog);
-        const formTitle = document.createElement('div');
-        formTitle.setAttribute('id', 'projectFormTitle');
-        const formTitleText = document.createElement('p');
-        formTitleText.innerText = "New Project";
-        const formTitleClose = document.createElement('img');
-        formTitleClose.setAttribute('id', 'dialogCloseBtn');
-        formTitleClose.addEventListener("click", (() => {
-            dialog.close();
-            dialog.remove();
-        }))
-        formTitleClose.src = Close;
-        formTitle.appendChild(formTitleText);
-        formTitle.appendChild(formTitleClose);
-        const nameLabel = document.createElement('label');
-        nameLabel.for = 'nameInput';
-        nameLabel.innerHTML = "Name"
-        const nameInput = document.createElement('input');
-        nameInput.type = "text";
-        nameInput.name = 'nameInput';
-        nameInput.id = 'nameInput';
-        nameInput.placeholder = "Ex: Paint Garage"
-        const projectSubmitBtn = document.createElement('button');
-        projectSubmitBtn.style = 'button';
-        projectSubmitBtn.innerHTML = 'Submit';
-        projectSubmitBtn.addEventListener("click", newProjectSubmit)
-        form.appendChild(formTitle);
-        form.appendChild(nameLabel);
-        form.appendChild(nameInput);
-        dialog.showModal();
-}
-
-function newProjectSubmit() {
-    const projectName = document.getElementById('nameInput');
+        //FIX THIS
+     function renderNewProjectButtonInSidebar() {
+        const newProjectBtn = document.getElementById('newProjectButton');
+        newProjectBtn.src = AddIcon;
+        newProjectBtn.addEventListener('click', (() => {
+            createNewProjectModal();
+        }));
+    };
     
-}
+    function createNewProjectModal() {
+        const dialog = document.createElement('dialog');
+            dialog.setAttribute('id', 'projectDialog');
+            const form = document.createElement('form');
+            form.setAttribute('id', 'projectForm');
+            dialog.appendChild(form);
+            main.appendChild(dialog);
+            const formTitle = document.createElement('div');
+            formTitle.setAttribute('id', 'projectFormTitle');
+            const formTitleText = document.createElement('p');
+            formTitleText.innerText = "New Project";
+            const formTitleClose = document.createElement('img');
+            formTitleClose.setAttribute('id', 'dialogCloseBtn');
+            formTitleClose.addEventListener("click", (() => {
+                dialog.close();
+                dialog.remove();
+            }))
+            formTitleClose.src = Close;
+            formTitle.appendChild(formTitleText);
+            formTitle.appendChild(formTitleClose);
+            const nameLabel = document.createElement('label');
+            nameLabel.for = 'nameInput';
+            nameLabel.innerHTML = "Name"
+            const nameInput = document.createElement('input');
+            nameInput.type = "text";
+            nameInput.name = 'nameInput';
+            nameInput.id = 'nameInput';
+            nameInput.placeholder = "Ex: Paint Garage"
+            const projectSubmitBtn = document.createElement('button');
+            projectSubmitBtn.style = 'button';
+            projectSubmitBtn.innerHTML = 'Submit';
+            projectSubmitBtn.addEventListener("click", newProjectSubmit(projects))
+            form.appendChild(formTitle);
+            form.appendChild(nameLabel);
+            form.appendChild(nameInput);
+            form.appendChild(projectSubmitBtn);
+            dialog.showModal();
+    }
+    
+    function newProjectSubmit(projects) {
+        const projectName = document.getElementById('nameInput');
+        let projectValue = projectName.value;
+        setAllFalse(projects);
+        let newProject = {
+            name: projectValue,
+            selected: true,
+            todos: []
+        }
+        projects.push(newProject);
+        renderSideBar(projects);
+    }
+};
+
