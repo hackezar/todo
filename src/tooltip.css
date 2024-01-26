@@ -1,0 +1,52 @@
+/* Tooltip container */
+.tooltip {
+    position: relative;
+    display: inline-block;
+  }
+  
+  /* Tooltip text for add new project */
+  .tooltip .tooltiptext {
+    visibility: hidden;
+    text-align: center;
+    border: 1px solid black;
+    background-color: #BBAB8C;
+    color: black;
+    width: 100px;
+    padding: 5px 0;
+    border-radius: 6px;
+    opacity: 90%;
+   
+    /* Position the tooltip text - see examples below! */
+    position: absolute;
+    z-index: 1;
+    left: 90%;
+  }
+  
+  /* Show the tooltip text when you mouse over the tooltip container */
+  .tooltip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+    /* Tooltip text for delete project*/
+    .tooltip .tooltiptext2 {
+      visibility: hidden;
+      text-align: center;
+      border: 1px solid black;
+      background-color: #BBAB8C;
+      color: black;
+      width: 100px;
+      padding: 5px 0;
+      border-radius: 6px;
+      opacity: 90%;
+      font-weight: 500;
+     
+      /* Position the tooltip text - see examples below! */
+      position: absolute;
+      z-index: 1;
+      right: 85%;
+    }
+    
+    /* Show the tooltip text when you mouse over the tooltip container */
+    .tooltip:hover .tooltiptext2 {
+      visibility: visible;
+    }

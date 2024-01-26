@@ -101,7 +101,6 @@ export function renderDialog() {
         submitBtn.addEventListener('click', (() => {
             let selectedProject = findSelectedProject(projects);
             let updatedProject = addToDoData(selectedProject);
-            console.log(updatedProject);
             updateMain(updatedProject);
             removeDialog();
             return projects;
@@ -109,7 +108,7 @@ export function renderDialog() {
         form.appendChild(submitBtn);
     };
 
-    function removeDialog() {
+   function removeDialog() {
         const dialog = document.getElementById('dialog');
         dialog.remove();
         return;

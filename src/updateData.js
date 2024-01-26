@@ -1,3 +1,7 @@
+import { renderSideBar } from "./renderSideBar";
+import { findSelectedProject } from "./findSelectedProject";
+import { updateMain } from "./renderMain";
+
 export function addToDoData(selectedProject) {
     let title = document.getElementById('titleInput');
     title = title.value;
@@ -16,7 +20,22 @@ export function createToDo(title, description, dueDate, priority) {
             title: title,
             description: description,
             dueDate: dueDate,
-            priority: priority
+            priority: priority,
+            completed: false
         }
+}
+
+export function removeProject(projects, selectedProject) {
+    for (let i =0; i < projects.length; i++) {
+        if (projects[i].name == selectedProject.name) {
+            projects.splice(i, 1);
+            projects[0].selected = true;
+            renderSideBar(projects);
+            //Select the 'selected' project
+            let selectedProject = findSelectedProject(projects);
+            //add the data to the main div
+            updateMain(selectedProject);
+        }
+    }
 }
 
