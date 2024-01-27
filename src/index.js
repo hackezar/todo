@@ -9,6 +9,7 @@ import { storageAvailable, setProjects, populateStorage } from './localStorage.j
 import { renderSideBar, renderNewProjectButtonInSidebar, renderDeleteProjectButtonInSidebar, setAllFalse } from "./renderSideBar.js";
 import { findSelectedProject } from './findSelectedProject.js';
 import { renderMain, updateMain } from "./renderMain.js"
+import { createProjectArray } from './createProjectArray.js';
 
 if (storageAvailable("localStorage")) {
     console.log('Yippee! We can use localStorage awesomeness');
