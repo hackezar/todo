@@ -76,6 +76,7 @@ body > div {
 #sidebar > ul {
     list-style-type: none;
     display: flex;
+    padding: 0;
     justify-content: space-around;
 }
 
@@ -91,9 +92,10 @@ body > div {
 }
 
 #projectRemoveDialog {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: var(--color4);
-    margin-left: 2rem;
-    margin-right: 2rem;
 }
 
 #removeProjectText {

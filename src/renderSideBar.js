@@ -6,19 +6,22 @@ import NewProject from './pics/newProject.svg';
 import Close from './pics/close.svg';
 import DeleteBtn from './pics/trash.svg';
 import { removeProject } from "./updateData.js";
+import { populateStorage } from "./localStorage.js";
 
 export function renderSideBar(projects) {
     //starts with a clean slate
     let projectsList = document.getElementById('projectsList');
     projectsList.innerHTML = "";
     //Goes through each name in projects and creates sidebar with names
-    projects.forEach(highlightSelectedProject);
-
+    for (let i=0; i<projects.length; i++){
+        projects[i].index = i;
+        highlightSelectedProject(projects, i);
+    }
     //this function highlights the project if it is the currently selected one
-    function highlightSelectedProject(project) {
+    function highlightSelectedProject(projects, i) {
         let lItem = document.createElement('li');
-        lItem.innerText = project.name;
-        if (project.selected == true) {
+        lItem.innerText = projects[i].name;
+        if (projects[i].selected == true) {
             lItem.style.fontWeight = "800";
             lItem.style["text-decoration"] = "underline";
         } else {
@@ -27,9 +30,10 @@ export function renderSideBar(projects) {
         }
         //On click will switch selected project(if the clicked project is not currently selected)
         lItem.addEventListener("click", function() {
-            if (project.selected == false) {
+            if (projects[i].selected == false) {
                 setAllFalse(projects);
-                project.selected = true;
+                projects[i].selected = true;
+                populateStorage(projects);
                 updateMain(findSelectedProject(projects));
                 renderSideBar(projects);
             } else if (project.selected == true) {
@@ -104,7 +108,6 @@ export function renderNewProjectButtonInSidebar(projects) {
     };
 
     function newProjectSubmit(projects, inputData) {
-        console.log(checkForDuplicate(projects, inputData));
         if (checkForDuplicate(projects, inputData) === false) {
             setAllFalse(projects);
             let newProject = {
@@ -113,9 +116,11 @@ export function renderNewProjectButtonInSidebar(projects) {
                 todos: []
             }
             projects.push(newProject);
+            populateStorage(projects);
             renderSideBar(projects);
             let selectedProject = findSelectedProject(projects);
             updateMain(selectedProject);
+
         } else {
             alert('Error: Project Name already in use');
         };

@@ -1,3 +1,5 @@
+import { createProjectArray } from "./createProjectArray";
+
 export function storageAvailable(type) {
     let storage;
     try {
@@ -10,9 +12,9 @@ export function storageAvailable(type) {
       return (
         e instanceof DOMException &&
         // everything except Firefox
-        (e.code === 22 ||
+        (e === 22 ||
           // Firefox
-          e.code === 1014 ||
+          e === 1014 ||
           // test name field too, because code might not be present
           // everything except Firefox
           e.name === "QuotaExceededError" ||
@@ -24,3 +26,13 @@ export function storageAvailable(type) {
       );
     }
   }
+
+export function setProjects() {
+    const savedProjects = JSON.parse(localStorage.getItem("projects"));
+    return savedProjects;
+}
+
+export function populateStorage(projects) {
+    localStorage.setItem("projects", JSON.stringify(projects));
+    setProjects();
+}

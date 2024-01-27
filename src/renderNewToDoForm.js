@@ -1,10 +1,10 @@
 import  Close  from './pics/close.svg';
-import { addToDoData } from './updateData.js';
-import { projects } from './index.js';
+import { addToDoData, updateTodoData } from './updateData.js';
 import { updateMain } from './renderMain.js';
 import { findSelectedProject } from './findSelectedProject.js';
+import { updateProjects } from './updateData.js';
 
-export function renderDialog() {
+export function renderDialog(projects) {
     const main = document.getElementById('main');
 
     function createDialog () {
@@ -34,7 +34,6 @@ export function renderDialog() {
         const titleInput = document.createElement('input');
         titleInput.setAttribute('id', 'titleInput')
         titleInput.placeholder = 'Title';
-        titleInput.required = true;
         form.appendChild(titleInput);
     }
     function createDescriptionInput() {
@@ -100,8 +99,9 @@ export function renderDialog() {
         submitBtn.innerText = "Submit";
         submitBtn.addEventListener('click', (() => {
             let selectedProject = findSelectedProject(projects);
-            let updatedProject = addToDoData(selectedProject);
-            updateMain(updatedProject);
+            let updatedProject = addToDoData(projects, selectedProject);
+            console.log(updatedProject);
+            updateMain(updatedProject, projects);
             removeDialog();
             return projects;
         }));

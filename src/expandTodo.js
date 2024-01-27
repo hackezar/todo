@@ -3,14 +3,15 @@ import DeleteIcon from './pics/trash.svg';
 import FinishedIcon from './pics/done.svg';
 
 import { updateMain } from './renderMain';
+import { updateProjects } from './updateData';
 
-export function findTodoClicked(updatedProject, i) {
+export function findTodoClicked(updatedProject, i, projects) {
    updatedProject.todos.forEach((element) => {
       if (element.index === i) {
-         expandTodo(element);
+         expandTodo(element, projects);
       }
    })
-   function expandTodo(element) {
+   function expandTodo(element, projects) {
       //Creates todo div
       let todoContainer = document.createElement('div');
       todoContainer.setAttribute('id', 'expandedToDo');
@@ -24,7 +25,7 @@ export function findTodoClicked(updatedProject, i) {
       deleteIcon.src = DeleteIcon;
       deleteIcon.setAttribute('id', 'deleteIcon');
       deleteIcon.addEventListener('click', (() => {
-         removeTodo(updatedProject, i);
+         removeTodo(updatedProject, i, projects);
       }));
       let minimizeIcon = document.createElement('img');
       minimizeIcon.src = MinimizeIcon;
@@ -71,8 +72,9 @@ export function findTodoClicked(updatedProject, i) {
       mainContainer.appendChild(todoContainer);
    }
 
-   function removeTodo (updatedProject, i) {
+   function removeTodo (updatedProject, i, projects) {
       updatedProject.todos.splice(i, 1);
+      updateProjects(projects, updatedProject);
       updateMain(updatedProject);
    };
 }

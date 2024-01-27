@@ -4,7 +4,7 @@ import FinishedIcon from './pics/done.svg';
 import { renderDialog } from './renderNewToDoForm.js';
 import { findTodoClicked } from './expandTodo.js';
 
-export function renderMain() {
+export function renderMain(projects) {
     const newImgDiv = document.createElement('div');
     newImgDiv.setAttribute('id', 'newImgDiv');
     newImgDiv.setAttribute('class', 'tooltip');
@@ -15,7 +15,7 @@ export function renderMain() {
     addNewImg.src = AddIcon;
     addNewImg.setAttribute('id', 'newToDoButton');
     addNewImg.addEventListener("click", (() => {
-        renderDialog();
+        renderDialog(projects);
     }));
     newImgDiv.appendChild(tooltipText);
     newImgDiv.appendChild(addNewImg);
@@ -25,7 +25,7 @@ export function renderMain() {
  
 //Opens project info on main container
 //Used in renderSideBar.js
-export function updateMain(updatedProject) {
+export function updateMain(updatedProject, projects) {
     const projectTitle = document.getElementById('projectTitle');
     let name = updatedProject.name;
     projectTitle.innerText = name;
@@ -75,7 +75,7 @@ export function updateMain(updatedProject) {
             todoContainer.appendChild(finishedIcon);
         }
         todoContainer.addEventListener('click', (() => {
-            findTodoClicked(updatedProject, i, todoTitle, todoDescription, todoDueDate, todoPriority);
+            findTodoClicked(updatedProject, i, projects, todoTitle, todoDescription, todoDueDate, todoPriority);
         }));
         mainContainer.appendChild(todoContainer);
     };
